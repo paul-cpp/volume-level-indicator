@@ -33,7 +33,6 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 
-	afx_msg void OnLButtonDown(UINT point);
 
 	DECLARE_MESSAGE_MAP()
 public:
@@ -44,8 +43,6 @@ public:
 	DECLARE_EVENTSINK_MAP()
 	void ClickProgctrl1();
 	CEdit CTRL_EDIT1;
-	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
-	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 };
 

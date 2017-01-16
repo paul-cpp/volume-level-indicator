@@ -9,13 +9,11 @@
 
 #include <cstring>
 #include "GetVolume.h"
+#include <time.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
-
-
-
 
 // Диалоговое окно CAboutDlg используется для описания сведений о приложении
 
@@ -51,7 +49,6 @@ END_MESSAGE_MAP()
 // диалоговое окно CMFCApplication1Dlg
 
 
-
 CMFCApplication1Dlg::CMFCApplication1Dlg(CWnd* pParent /*=NULL*/)
 : CDialogEx(CMFCApplication1Dlg::IDD, pParent)
 {
@@ -69,11 +66,7 @@ BEGIN_MESSAGE_MAP(CMFCApplication1Dlg, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
 
-	ON_WM_LBUTTONDOWN()
-	ON_WM_KEYDOWN()
-
-	ON_NOTIFY(NM_CUSTOMDRAW, IDC_PROGRESS1, &CMFCApplication1Dlg::OnNMCustomdrawProgress1)
-
+	//ON_NOTIFY(NM_CUSTOMDRAW, IDC_PROGRESS1, &CMFCApplication1Dlg::OnNMCustomdrawProgress1)
 
 END_MESSAGE_MAP()
 
@@ -114,9 +107,6 @@ BOOL CMFCApplication1Dlg::OnInitDialog()
 
 	int start_value = GetVolume();
 	CTRL_PROGRESSBAR_CUSTOM.put_Value(start_value);
-
-
-
 
 	//************************/*****************************************/*****************************************/*******************************
 
@@ -189,39 +179,9 @@ int offset = 10;
 void CMFCApplication1Dlg::ClickProgctrl1()
 {
 	// TODO: добавьте свой код обработчика сообщений
-	//UpdateData(FALSE);
-
-	value = GetVolume();
-
-	CTRL_PROGRESS1.SetState(value);
-
-
-
-
-	CString str_value;
-	str_value.Format(_T("%d"), value);
-	CTRL_EDIT1.SetWindowTextW(str_value);
+	
 }
 
-void CMFCApplication1Dlg::OnLButtonDown(UINT point)
-{
-
-}
-
-void CMFCApplication1Dlg::OnLButtonDown(UINT nFlags, CPoint point)
-{
-	// TODO: добавьте свой код обработчика сообщений или вызов стандартного
-
-	CDialogEx::OnLButtonDown(nFlags, point);
-}
-
-
-void CMFCApplication1Dlg::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
-{
-	// TODO: добавьте свой код обработчика сообщений или вызов стандартного
-	UINT _nChar = VK_VOLUME_UP;
-	CDialogEx::OnKeyDown(VK_VOLUME_UP, nRepCnt, nFlags);
-}
 
 
 BOOL CMFCApplication1Dlg::PreTranslateMessage(MSG* pMsg)
@@ -234,19 +194,20 @@ BOOL CMFCApplication1Dlg::PreTranslateMessage(MSG* pMsg)
 		if (pMsg->wParam == VK_VOLUME_UP)
 		{
 			int volume = GetVolume();
-			str_value.Format(_T("key pressed:\t%d"), volume);
+			//str_value.Format(_T("key pressed:\t%d"), volume);
 			CTRL_PROGRESSBAR_CUSTOM.put_Value(volume);
 
 		}
 		else if (pMsg->wParam == VK_VOLUME_DOWN)
 		{
 			int volume = GetVolume();
-			str_value.Format(_T("key pressed:\t%d"), volume);
+			//str_value.Format(_T("key pressed:\t%d"), volume);
 			CTRL_PROGRESSBAR_CUSTOM.put_Value(volume);
 
 		}
 		else if (pMsg->wParam == VK_VOLUME_MUTE)
 		{
+
 		}
 	}
 
